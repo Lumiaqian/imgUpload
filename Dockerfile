@@ -1,4 +1,4 @@
-FROM golang:1.16.5-alpine3.14 AS builder
+FROM golang:1.16.5-alpine3.13 AS builder
 
 WORKDIR /build
 RUN adduser -u 10001 -D app-runner
@@ -11,7 +11,7 @@ RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 GOARCH=amd64 GOOS=linux go build -a -o your-application .
 
-FROM alpine:3.14 AS final
+FROM alpine:3.13 AS final
 
 WORKDIR /app
 COPY --from=builder /build/your-application /app/
