@@ -48,12 +48,14 @@ func UploadHandler(c *gin.Context) {
 		log.Panicln("文件上传失败！", err)
 		return
 	}
-
+	name := ""
+	// 文件夹
+	folder := "/data/images/"
+	// 域名
+	prefix := "https://img.caoyuqian.cn/"
 	if file != nil {
 		// 获得文件名
-		name := file.Filename
-		// 文件夹
-		folder := "/data/images/"
+		name = file.Filename
 		err := c.SaveUploadedFile(file, folder+name)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
@@ -63,7 +65,7 @@ func UploadHandler(c *gin.Context) {
 		}
 	}
 
-	c.JSON(http.StatusOK, gin.H{"code": 200, "desc": "图片上传成功"})
+	c.JSON(http.StatusOK, gin.H{"code": 200, "desc": "图片上传成功", "data": prefix + name})
 
 }
 
