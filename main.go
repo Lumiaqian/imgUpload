@@ -52,7 +52,9 @@ func UploadHandler(c *gin.Context) {
 	if file != nil {
 		// 获得文件名
 		name := file.Filename
-		err := c.SaveUploadedFile(file, "./"+name)
+		// 文件夹
+		folder := "/data/images/"
+		err := c.SaveUploadedFile(file, folder+name)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"msg": "图片上传失败！",
