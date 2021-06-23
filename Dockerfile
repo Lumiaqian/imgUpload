@@ -15,7 +15,7 @@ FROM alpine:3.13 AS final
 WORKDIR /app
 COPY --from=builder /build/imgUpload /app/
 #COPY --from=builder /build/config /app/config
-COPY --from=builder /etc/passwd /etc/passwd
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+#COPY --from=builder /etc/passwd /etc/passwd
+#COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 ENTRYPOINT ["/app/imgUpload"]
