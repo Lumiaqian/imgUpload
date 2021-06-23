@@ -9,7 +9,7 @@ COPY go.sum .
 RUN go mod download
 
 COPY . .
-RUN CGO_ENABLED=0 GOARCH=amd64 GOOS=linux go build -a -o your-application .
+RUN CGO_ENABLED=0 GOARCH=amd64 GOOS=linux go build -a -o imgUpload .
 
 FROM alpine:3.13 AS final
 
