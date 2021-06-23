@@ -19,5 +19,7 @@ COPY --from=builder /build/your-application /app/
 COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
+RUN chown -R app-runner /app
+RUN chmod 777 /app
 USER app-runner
 ENTRYPOINT ["/app/your-application"]
