@@ -1,7 +1,6 @@
 FROM golang:1.16.5-alpine3.13 AS builder
 
 WORKDIR /build
-RUN adduser -u 10001 -D app-runner
 
 ENV GOPROXY https://goproxy.cn
 COPY go.mod .
@@ -19,7 +18,4 @@ COPY --from=builder /build/your-application /app/
 COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-RUN chown -R app-runner /app
-RUN chmod 777 /app
-USER app-runner
 ENTRYPOINT ["/app/your-application"]
