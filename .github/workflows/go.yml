@@ -23,6 +23,7 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+      
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
