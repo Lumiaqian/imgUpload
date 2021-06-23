@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine3.14 AS builder
+FROM golang:1.16.5-alpine3.14 AS builder
 
 WORKDIR /build
 RUN adduser -u 10001 -D app-runner
