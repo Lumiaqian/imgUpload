@@ -45,7 +45,7 @@ func UploadHandler(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"msg": fmt.Sprintf("图片上传失败！%v", err),
 		})
-		log.Panicln("文件上传失败！", err)
+		log.Panicln("图片上传失败！", err)
 		return
 	}
 	name := ""
@@ -59,7 +59,7 @@ func UploadHandler(c *gin.Context) {
 		err := c.SaveUploadedFile(file, folder+name)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
-				"msg": "图片上传失败！",
+				"msg": fmt.Sprintf("图片上传失败！%v", err),
 			})
 			return
 		}
