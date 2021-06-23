@@ -51,7 +51,7 @@ func UploadHandler(c *gin.Context) {
 	}
 	name := ""
 	// 文件夹
-	folder := "/data/images/"
+	folder := "/app/data/images/"
 	//如果没有filepath文件目录就创建一个
 	if _, err := os.Stat(folder); err != nil {
 		if !os.IsExist(err) {
