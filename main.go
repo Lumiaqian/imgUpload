@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+	"os"
 )
 
 func cors() gin.HandlerFunc {
@@ -51,6 +52,15 @@ func UploadHandler(c *gin.Context) {
 	name := ""
 	// 文件夹
 	folder := "/data/images/"
+	//如果没有filepath文件目录就创建一个
+	if _, err := os.Stat(folder); err != nil {
+		if !os.IsExist(err) {
+			err := os.MkdirAll(folder, os.ModePerm)
+			if err != nil {
+				return
+			}
+		}
+	}
 	// 域名
 	prefix := "https://img.caoyuqian.cn/"
 	if file != nil {
