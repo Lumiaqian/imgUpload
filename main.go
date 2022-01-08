@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func cors() gin.HandlerFunc {
@@ -66,7 +67,7 @@ func UploadHandler(c *gin.Context) {
 	prefix := "https://img.caoyuqian.cn/"
 	if file != nil {
 		// 获得文件名
-		name = file.Filename
+		name = strings.TrimSpace(file.Filename)
 		err := c.SaveUploadedFile(file, folder+name)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
